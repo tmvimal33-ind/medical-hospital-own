@@ -1,0 +1,30 @@
+name: Medilife CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate project files
+        run: |
+          echo "Checking Medilife Hospital project..."
+          test -f index.html
+          test -f css/style.css
+          test -f js/script.js
+          test -f modules/patients.html
+          test -f modules/billing.html
+          echo "All required files are present."
